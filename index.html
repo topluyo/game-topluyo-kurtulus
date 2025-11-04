@@ -1,0 +1,33 @@
+<body style="margin:0; background:#000; overflow:hidden;height:100vh;">
+  <iframe src="./app.html" width="900" height="600" style="position:absolute;width:900px;height:600px;border:none; display:block;transform-origin:left top;"></iframe>
+
+  <script>
+    function scaleIframe() {
+      const baseWidth = 900;
+      const baseHeight = 600;
+      const iframe = document.querySelector('iframe');
+
+      const scale = Math.min(
+        window.innerWidth / baseWidth,
+        window.innerHeight / baseHeight
+      );
+
+      // Apply scale
+      iframe.style.transform = `scale(${scale})`;
+
+      // Compute centered position
+      const scaledWidth = baseWidth * scale;
+      const scaledHeight = baseHeight * scale;
+      const left = (window.innerWidth - scaledWidth) / 2;
+      const top = (window.innerHeight - scaledHeight) / 2;
+
+      iframe.style.left = `${left}px`;
+      iframe.style.top = `${top}px`;
+    }
+
+    window.addEventListener('resize', scaleIframe);
+    window.addEventListener('load', scaleIframe);
+    scaleIframe()
+
+  </script>
+</body>
